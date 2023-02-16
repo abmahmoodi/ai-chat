@@ -8,6 +8,7 @@ class ChatBot
       bot.logger.info('Bot has been started')
       bot.listen do |message|
         bot.logger.info('Bot has been listened.')
+        begin
         if message.text == '/start'
           bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
         elsif message.text == '/stop'
@@ -16,6 +17,9 @@ class ChatBot
           query = message.text[3..-1]
           answer = Chat.call(message: query).result
           bot.api.send_message(chat_id: message.chat.id, text: answer)
+        end
+        rescue StandardError => e
+          Rails.logger.info(e.message)
         end
       end
     end
