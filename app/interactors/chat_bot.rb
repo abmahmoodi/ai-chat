@@ -3,7 +3,7 @@ class ChatBot
   include Interactor
 
   TOKEN = ENV['TELEGRAM_TOKEN']
-  PARAM_ERROR = 'Please ask your question with /ai like /ai what is AI?'
+  PARAM_ERROR = "Please ask your question with /ai like: \n /ai what is AI?"
 
   def call
     Telegram::Bot::Client.run(TOKEN) do |bot|
