@@ -12,7 +12,8 @@ class ChatBot
         bot.logger.info('Bot has been listened.')
         begin
         if message.text == '/start'
-          bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+          bot.api.send_message(chat_id: message.chat.id,
+                               text: "Hello, #{message.from.first_name}\n#{PARAM_ERROR}")
         elsif message.text == '/stop'
           bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
         elsif message.text == '/help'
