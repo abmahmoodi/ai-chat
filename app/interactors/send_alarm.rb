@@ -1,7 +1,7 @@
 class SendAlarm
   include Interactor
 
-  TOKEN = ENV['OPENAI_TOKEN']
+  TOKEN = ENV['TELEGRAM_TOKEN']
   TELEGRAM_ENDPOINT = 'https://api.telegram.org/'
   CHAT_ID = '@ai_chat_bot_alarm'
   def call
