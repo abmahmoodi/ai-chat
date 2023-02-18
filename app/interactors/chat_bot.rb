@@ -19,7 +19,7 @@ class ChatBot
           query = message.text[3..-1]
           answer = Chat.call(message: query).result
           bot.api.send_message(chat_id: message.chat.id,
-                               reply_to_message_id: message.id,
+                               reply_to_message_id: message.message_id,
                                text: answer)
         else
           bot.api.send_message(chat_id: message.chat.id, text: PARAM_ERROR)
