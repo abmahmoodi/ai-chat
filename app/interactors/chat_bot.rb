@@ -31,6 +31,7 @@ class ChatBot
           end
         rescue StandardError => e
           Rails.logger.info(e.message)
+          SendAlarm.call(message: e.message)
         end
       end
     end
