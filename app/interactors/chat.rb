@@ -9,9 +9,11 @@ class Chat
                            :bearer_token => { 'Token': TOKEN  },
                            :body => { "model": "text-davinci-003",
                                       "prompt": context.message,
-                                      "max_tokens": 500,
+                                      "max_tokens": 256,
                                       "temperature": 0.7,
-                                      "top_p": 1
+                                      "top_p": 1,
+                                      "frequency_penalty": 0,
+                                      "presence_penalty": 0
                            }.to_json)
     Rails.logger.info "Response Result: #{result}"
     if result['id'].present?
