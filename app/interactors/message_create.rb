@@ -13,7 +13,7 @@ class MessageCreate
                                          telegram_user_id: context.telegram_user_id)
     else
       ChatMessage.where(telegram_chat_id: context.telegram_chat_id,
-                        telegram_user_id: context.telegram_user_id).update_all(message: "#{current_chat.message}#{context.message}")
+                        telegram_user_id: context.telegram_user_id).update_all(message: "#{current_chat.message}\n#{context.message}")
       context.chat = ChatMessage.find_by(telegram_chat_id: context.telegram_chat_id,
                                          telegram_user_id: context.telegram_user_id)
     end

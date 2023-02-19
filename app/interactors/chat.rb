@@ -13,7 +13,8 @@ class Chat
                                       "temperature": 0.7,
                                       "top_p": 1,
                                       "frequency_penalty": 0,
-                                      "presence_penalty": 0
+                                      "presence_penalty": 0.6,
+                                      "stop": [" You:", " AI:"]
                            }.to_json)
     Rails.logger.info "Response Result: #{result}"
     if result['id'].present?
