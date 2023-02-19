@@ -27,7 +27,11 @@ class ChatBot
             result = MessageCreate.call(telegram_chat_id: message.chat.id,
                                         telegram_user_id: message.from.id,
                                         message: query).chat
+
             answer = Chat.call(message: result.message).result
+            MessageCreate.call(telegram_chat_id: message.chat.id,
+                                        telegram_user_id: message.from.id,
+                                        message: answer).chat
             bot.api.send_message(chat_id: message.chat.id,
                                  reply_to_message_id: message.message_id,
                                  text: answer)

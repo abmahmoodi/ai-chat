@@ -9,7 +9,7 @@ class Chat
                            :bearer_token => { 'Token': TOKEN  },
                            :body => { "model": "text-davinci-003",
                                       "prompt": context.message,
-                                      "max_tokens": 200,
+                                      "max_tokens": 500,
                                       "temperature": 0.7
                            }.to_json)
     Rails.logger.info "Response Result: #{result}"
