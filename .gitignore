@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 .env
+bot.sh
 
 # Ignore all logfiles and tempfiles.
 /log/*

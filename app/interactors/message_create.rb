@@ -1,0 +1,18 @@
+class MessageCreate
+  include Interactor
+
+  def call
+    current_chat = ChatMessage.find_by(telegram_chat_id: context.telegram_chat_id,
+                                       telegram_user_id: context.telegram_user_id)
+    if current_chat.nil?
+      message = ChatMessage.new(telegram_chat_id: context.telegram_chat_id,
+                                telegram_user_id: context.telegram_user_id,
+                                message: context.message)
+      message.save!
+      context.chat = ChatMessage.find_by(telegram_chat_id: context.telegram_chat_id,
+                                         telegram_user_id: context.telegram_user_id)
+    else
+      context.chat = current_chat
+    end
+  end
+end

@@ -3,7 +3,9 @@ class ChatBot
   include Interactor
 
   TOKEN = ENV['TELEGRAM_TOKEN']
-  PARAM_ERROR = "Please ask your question with /ai like: \n /ai what is AI?"
+  PARAM_ERROR = "Please ask your question from /ai like: \n/ai what is AI?"
+  HELP = "Ask question: `/ai`\nNew chat: `/new`"
+  NEW_CHAT = "You are in new chat.\n"
 
   def call
     Telegram::Bot::Client.run(TOKEN) do |bot|
@@ -19,15 +21,21 @@ class ChatBot
           elsif message.text == '/help'
             bot.api.send_message(chat_id: message.chat.id,
                                  reply_to_message_id: message.message_id,
-                                 text: PARAM_ERROR)
+                                 text: HELP)
           elsif message.text[0..2] == '/ai'
             query = message.text[3..-1]
-            answer = Chat.call(message: query).result
+            result = MessageCreate.call(telegram_chat_id: message.chat.id,
+                                        telegram_user_id: message.from.id,
+                                        message: query).chat
+            answer = Chat.call(message: result.message).result
             bot.api.send_message(chat_id: message.chat.id,
                                  reply_to_message_id: message.message_id,
                                  text: answer)
-          else
+          elsif message.text[0..2] == '/new'
+            ChatMessage.where(telegram_chat_id: message.chat.id).delete_all
             bot.api.send_message(chat_id: message.chat.id, text: PARAM_ERROR)
+          else
+            bot.api.send_message(chat_id: message.chat.id, text: "#{NEW_CHAT}#{PARAM_ERROR}")
           end
         rescue StandardError => e
           Rails.logger.info(e.message)
