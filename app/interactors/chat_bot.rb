@@ -36,7 +36,8 @@ class ChatBot
                                  reply_to_message_id: message.message_id,
                                  text: answer)
           elsif message.text[0..2] == '/new'
-            ChatMessage.where(telegram_chat_id: message.from.id).delete_all
+            Rails.logger.info("message.chat.id: #{message.chat.id}, message.from.id: #{message.from.id}")
+            ChatMessage.where(telegram_chat_id: message.chat.id, telegram_user_id: message.from.id).delete_all
             bot.api.send_message(chat_id: message.chat.id, text: PARAM_ERROR)
           else
             bot.api.send_message(chat_id: message.chat.id, text: "#{NEW_CHAT}#{PARAM_ERROR}")
