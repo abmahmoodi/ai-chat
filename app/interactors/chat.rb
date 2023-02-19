@@ -10,7 +10,8 @@ class Chat
                            :body => { "model": "text-davinci-003",
                                       "prompt": context.message,
                                       "max_tokens": 500,
-                                      "temperature": 0.7
+                                      "temperature": 0.7,
+                                      "top_p": 1
                            }.to_json)
     Rails.logger.info "Response Result: #{result}"
     if result['id'].present?
