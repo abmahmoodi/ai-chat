@@ -27,7 +27,7 @@ class ChatBot
             result = MessageCreate.call(telegram_chat_id: message.chat.id,
                                         telegram_user_id: message.from.id,
                                         message: query).chat
-
+            Rails.logger.info("Message from result: #{result.message}")
             answer = Chat.call(message: result.message).result
             MessageCreate.call(telegram_chat_id: message.chat.id,
                                         telegram_user_id: message.from.id,
