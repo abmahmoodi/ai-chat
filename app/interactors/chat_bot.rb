@@ -3,8 +3,8 @@ class ChatBot
   include Interactor
 
   TOKEN = ENV['TELEGRAM_TOKEN']
-  PARAM_ERROR = "Please ask your question from /ai like: \n/ai what is AI?"
-  HELP = "Ask question: `/ai`\nNew chat: `/new`"
+  PARAM_ERROR = "Please ask your question from AI like: \n/ai what is AI?"
+  HELP = "Ask question: /ai\nNew chat: /new"
   NEW_CHAT = "You are in new chat.\n"
 
   def call
