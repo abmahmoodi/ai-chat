@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Telegram bot to access OpenAI API and creates a chat bot like ChatGPT.
 
-Things you may want to cover:
+## Install
+You need to install Ruby 3.2.0 and Rails 7.0 and then run the following command in project root path
 
-* Ruby version
+  bundle install
 
-* System dependencies
+  rails db:create
 
-* Configuration
+  rails db:migrate
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
