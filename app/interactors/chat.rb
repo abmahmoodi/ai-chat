@@ -3,13 +3,15 @@ class Chat
 
   TOKEN = ENV['OPENAI_TOKEN']
   BASE_URI = 'https://api.openai.com/v1/completions'
+  MAX_TOKENS = 256
+  
   def call
     result = HTTParty.post("#{BASE_URI}",
                            :headers => { 'Content-Type': 'application/json', 'Authorization' => "Bearer #{TOKEN}" },
                            :bearer_token => { 'Token': TOKEN  },
                            :body => { "model": "text-davinci-003",
                                       "prompt": context.message,
-                                      "max_tokens": 1000,
+                                      "max_tokens": MAX_TOKENS,
                                       "temperature": 0.7,
                                       "top_p": 1,
                                       "frequency_penalty": 0,
